@@ -387,6 +387,10 @@
         <option value="chef">Chef</option>
       </select>
     </div>
+    <div class="field">
+      <label for="edit-idImg">ID Image URL</label>
+      <input type="text" id="edit-idImg" placeholder="https://..."/>
+    </div>
 
     <p class="error-msg" id="edit-error"></p>
 
@@ -593,7 +597,7 @@
     $('edit-error').textContent = '';
 
     // clear fields while loading
-    ['firstName','lastName','gender','phoneNumber','accountStatus','userType']
+    ['firstName','lastName','gender','phoneNumber','accountStatus','userType','idImg']
       .forEach(f => { $(`edit-${f}`).value = ''; });
 
     $('edit-modal').classList.add('open');
@@ -622,6 +626,7 @@
       $('edit-phoneNumber').value   = p.phoneNumber   || '';
       $('edit-accountStatus').value = p.accountStatus || '';
       $('edit-userType').value      = p.userType      || '';
+      $('edit-idImg').value         = p.idImg         || '';
 
     } catch (err) {
       $('edit-error').textContent = 'Could not load profile data.';
@@ -644,6 +649,7 @@
       phoneNumber:   $('edit-phoneNumber').value.trim(),
       accountStatus: $('edit-accountStatus').value,
       userType:      $('edit-userType').value,
+      idImg:         $('edit-idImg').value.trim(),
     };
 
     setLoading('save-btn', true);
