@@ -466,16 +466,16 @@
 
       const data = await res.json();
 
+      console.log('res from admin sign in', res);
+      console.log('data from admin sign in', data);
+
       if (!res.ok) {
         errEl.textContent = data?.message || 'Invalid credentials.';
         return;
       }
 
       // accept token wherever the API puts it
-      const token = data?.token
-        || data?.data?.token
-        || data?.accessToken
-        || data?.data?.accessToken;
+      const token = data?.access_token;
 
       if (!token) {
         errEl.textContent = 'Authentication failed. No token received.';
