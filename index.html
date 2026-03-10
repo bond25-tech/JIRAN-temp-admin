@@ -374,20 +374,17 @@
       <label for="edit-accountStatus">Account Status</label>
       <select id="edit-accountStatus">
         <option value="">— select —</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
         <option value="pending">Pending</option>
-        <option value="suspended">Suspended</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
       </select>
     </div>
     <div class="field">
       <label for="edit-userType">User Type</label>
       <select id="edit-userType">
         <option value="">— select —</option>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-        <option value="landlord">Landlord</option>
-        <option value="tenant">Tenant</option>
+        <option value="customer">Customer</option>
+        <option value="chef">Chef</option>
       </select>
     </div>
 
@@ -487,7 +484,10 @@
       loadProfiles();
 
     } catch (err) {
-      errEl.textContent = 'Network error. Please try again.';
+      const isCors = err.name === 'TypeError' && (err.message === 'Failed to fetch' || err.message.includes('NetworkError'));
+      errEl.textContent = isCors
+        ? 'The API is blocking this site (CORS). The jiran.space server must allow requests from this origin.'
+        : 'Network error. Please try again.';
     } finally {
       setLoading('login-btn', false, 'Sign In');
     }
