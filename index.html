@@ -450,6 +450,10 @@
       <label for="edit-idImg">ID Image URL</label>
       <input type="text" id="edit-idImg" placeholder="https://..."/>
     </div>
+    <div class="field">
+      <label for="edit-avatar">Avatar URL</label>
+      <input type="text" id="edit-avatar" placeholder="https://..."/>
+    </div>
 
     <p class="error-msg" id="edit-error"></p>
 
@@ -656,7 +660,7 @@
     $('edit-error').textContent = '';
 
     // clear fields while loading
-    ['firstName','lastName','gender','phoneNumber','accountStatus','userType','idImg']
+    ['firstName','lastName','gender','phoneNumber','accountStatus','userType','idImg','avatar']
       .forEach(f => { $(`edit-${f}`).value = ''; });
 
     $('edit-modal').classList.add('open');
@@ -686,6 +690,7 @@
       $('edit-accountStatus').value = p.accountStatus || '';
       $('edit-userType').value      = p.userType      || '';
       $('edit-idImg').value         = p.idImg         || '';
+      $('edit-avatar').value        = p.avatar        || '';
 
     } catch (err) {
       $('edit-error').textContent = 'Could not load profile data.';
@@ -709,6 +714,7 @@
       accountStatus: $('edit-accountStatus').value,
       userType:      $('edit-userType').value,
       idImg:         $('edit-idImg').value.trim(),
+      avatar:        $('edit-avatar').value.trim(),
     };
 
     setLoading('save-btn', true);
